@@ -164,20 +164,19 @@ function papers(cardDataUrl, checkExistanceUrl){
     document.getElementById('page-indicator').textContent = `Page ${currentPage} of ${totalPages}`;
   }
 
-  function nextPage() {
-    const totalPages = Math.ceil(cardData.length / cardsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderCards(test_names);
-    }
-  }
-
-  function prevPage() {
+   window.prevPage = function () {
     if (currentPage > 1) {
       currentPage--;
       renderCards(test_names);
     }
-  }
+  };
+
+  window.nextPage = function () {
+    if (currentPage < Math.ceil(cardData.length / cardsPerPage)) {
+      currentPage++;
+      renderCards(test_names);
+    }
+  };
 
   window.addEventListener('resize', () => {
     const newCardsPerPage = getCardsPerPage();
